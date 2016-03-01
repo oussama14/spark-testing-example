@@ -1,4 +1,4 @@
-package com.github.rbrugier
+package com.ipponusa
 
 import com.holdenkarau.spark.testing.{RDDGenerator, SharedSparkContext}
 import org.scalacheck.Arbitrary

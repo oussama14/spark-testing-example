@@ -1,7 +1,8 @@
-import com.github.rbrugier.MainSample
-import com.holdenkarau.spark.testing.{RDDComparisons, SharedSparkContext, RDDGenerator}
+package com.ipponusa
+
+import com.holdenkarau.spark.testing.{RDDComparisons, RDDGenerator, SharedSparkContext}
 import org.apache.spark.rdd.RDD
-import org.scalacheck.{Gen, Arbitrary}
+import org.scalacheck.Arbitrary
 import org.scalacheck.Prop._
 import org.scalatest.prop.Checkers
 import org.scalatest.{FlatSpec, Matchers}

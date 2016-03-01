@@ -1,7 +1,8 @@
-import org.apache.spark.{SparkConf, SparkContext}
+package com.ipponusa
+
 import org.apache.spark.rdd.RDD
-import org.scalatest.{BeforeAndAfter, Matchers, FlatSpec}
-import com.github.rbrugier.MainSample
+import org.apache.spark.{SparkConf, SparkContext}
+import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 class MainSampleTest extends FlatSpec with Matchers with BeforeAndAfter {
 
