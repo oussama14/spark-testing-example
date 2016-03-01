@@ -11,19 +11,13 @@ object Main {
   val sc = new SparkContext(sparkConf)
 
   def main(args: Array[String]) {
-    val input: RDD[String] = sc.textFile("src/main/resources/intro.txt")
-    val countByWordRdd: RDD[(String, Int)] = WordCounter.count(input)
+    val countByWordRdd: RDD[(String, Int)] = sc.textFile("src/main/resources/intro.txt")
+      .flatMap(l => l.split("\\W+"))
+      .map(word => word.trim())
+      .map(word => (word, 1))
+      .reduceByKey(_ + _)
 
     countByWordRdd
       .foreach(println)
   }
 }
-
-
-//  def count(lines: RDD[String]): RDD[(String, Int)] = {
-//    val wordsCount = lines.flatMap(l => l.split("\\W+"))
-//        .map(word => word.trim())
-//      .map(word => (word, 1))
-//      .reduceByKey(_ + _)
-//    wordsCount
-//  }
