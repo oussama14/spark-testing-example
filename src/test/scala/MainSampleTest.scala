@@ -28,8 +28,6 @@ class MainSampleTest extends FlatSpec with Matchers with BeforeAndAfter {
     val lines: RDD[String] = sc.parallelize(List(text))
     val wordCounts: RDD[(String, Int)] = MainSample.count(lines)
 
-    wordCounts.foreach(it => println(it))
-
     wordCounts.collect() should contain allOf (("Hello", 2), ("world", 1))
   }
 
