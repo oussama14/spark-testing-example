@@ -78,3 +78,5 @@ Since its creation, Spark has been a very active project and community, with the
 Storage Layers for Spark
 Spark can create distributed datasets from any file stored in the Hadoop distributed filesystem (HDFS) or other storage systems supported by the Hadoop APIs (including your local filesystem, Amazon S3, Cassandra, Hive, HBase, etc.). It’s important to remember that Spark does not require Hadoop; it simply has support for storage systems implementing the Hadoop APIs. Spark supports text files, SequenceFiles, Avro, Parquet, and any other Hadoop InputFormat. We will look at interacting with these data sources in Chapter 5.
 
+
+Extracted from the book "Learning Spark" introduction available online at: https://www.safaribooksonline.com/library/view/learning-spark/9781449359034/ch01.html

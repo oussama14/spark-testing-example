@@ -7,7 +7,7 @@ import org.scalatest.junit.JUnitRunner
 import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 @RunWith(classOf[JUnitRunner])
-class MainSampleTest extends FlatSpec with Matchers with BeforeAndAfter {
+class WordCounterTest extends FlatSpec with Matchers with BeforeAndAfter {
 
   var sc:SparkContext = _
 

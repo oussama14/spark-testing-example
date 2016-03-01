@@ -10,7 +10,7 @@ import org.scalatest.prop.Checkers
 import org.scalatest.{FlatSpec, Matchers}
 
 @RunWith(classOf[JUnitRunner])
-class MainSampleTestingTest extends FlatSpec with SharedSparkContext with Matchers with Checkers {
+class WordCounterWithSparkTestingTest extends FlatSpec with SharedSparkContext with Matchers with Checkers {
 
   behavior of "counter"
 
