@@ -10,18 +10,18 @@ import org.scalatest.prop.Checkers
 import org.scalatest.{FlatSpec, Matchers}
 
 @RunWith(classOf[JUnitRunner])
-class WordCounterWithSparkTestingTest extends FlatSpec with SharedSparkContext with Matchers with Checkers {
+class WordCounterWithSparkTestingTest extends FlatSpec with Matchers with SharedSparkContext with Checkers {
 
-  behavior of "counter"
+  behavior of "Words counter"
 
-  it should "count words as expected" in {
+  it should "count words in a text" in {
     val text =
-      """Hello world
-        |Hello
+      """Hello Spark
+        |Hello world
       """.stripMargin
 
     val inputRdd: RDD[String] = sc.parallelize(List(text))
-    val expectedRdd: RDD[(String, Int)] = sc.parallelize(List(("Hello", 2), ("world", 1)))
+    val expectedRdd: RDD[(String, Int)] = sc.parallelize(List(("Hello", 2), ("Spark", 1), ("world", 1)))
 
     val resRdd: RDD[(String, Int)] = WordCounter.count(inputRdd)
     assert(None === RDDComparisons.compare(resRdd, expectedRdd))

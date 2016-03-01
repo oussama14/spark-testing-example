@@ -14,7 +14,7 @@ class WordCounterTest extends FlatSpec with Matchers with BeforeAndAfter {
   before {
     val sparkConf = new SparkConf()
       .setMaster("local[*]")
-      .setAppName("test-rdd")
+      .setAppName("test-wordcount")
     sc = new SparkContext(sparkConf)
   }
 
@@ -22,17 +22,16 @@ class WordCounterTest extends FlatSpec with Matchers with BeforeAndAfter {
     sc.stop()
   }
 
-  behavior of "Count words"
+  behavior of "Words counter"
 
-  it should "count words in lines" in {
+  it should "count words in a text" in {
     val text =
-      """Hello world
-        |Hello
+      """Hello Spark
+        |Hello world
       """.stripMargin
     val lines: RDD[String] = sc.parallelize(List(text))
     val wordCounts: RDD[(String, Int)] = WordCounter.count(lines)
 
-    wordCounts.collect() should contain allOf (("Hello", 2), ("world", 1))
+    wordCounts.collect() should contain allOf (("Hello", 2), ("Spark", 1), ("world", 1))
   }
-
 }
