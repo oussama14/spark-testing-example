@@ -13,7 +13,6 @@ object Main {
   def main(args: Array[String]) {
     val countByWordRdd: RDD[(String, Int)] = sc.textFile("src/main/resources/intro.txt")
       .flatMap(l => l.split("\\W+"))
-      .map(word => word.trim())
       .map(word => (word, 1))
       .reduceByKey(_ + _)
 
