@@ -16,11 +16,11 @@ object MainSample {
     //count(rdd).foreach(println)
   }
 
-  def count(lines: RDD[String]): RDD[(String, Int)] = {
-    val wordsCount = lines.flatMap(l => l.split("\\W+"))
-        .map(word => word.trim())
-      .map(word => (word, 1))
-      .reduceByKey(_ + _)
-    wordsCount
-  }
+//  def count(lines: RDD[String]): RDD[(String, Int)] = {
+//    val wordsCount = lines.flatMap(l => l.split("\\W+"))
+//        .map(word => word.trim())
+//      .map(word => (word, 1))
+//      .reduceByKey(_ + _)
+//    wordsCount
+//  }
 }
