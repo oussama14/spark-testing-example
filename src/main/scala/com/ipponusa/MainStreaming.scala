@@ -20,7 +20,7 @@ object MainStreaming {
     val rddQueue = new mutable.Queue[RDD[Char]]()
 
     val input: InputDStream[Char] = ssc.queueStream(rddQueue, oneAtATime = false)
-    applyOperations(input)
+    StreamLogic.applyOperations(input)
       .print()
 
     ssc.start()
@@ -35,7 +35,5 @@ object MainStreaming {
     ssc.awaitTermination()
   }
 
-  def applyOperations(input: InputDStream[Char]): DStream[Char] = {
-    input.map(_.toUpper)
-  }
+
 }
