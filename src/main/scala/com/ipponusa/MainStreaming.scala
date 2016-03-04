@@ -2,6 +2,7 @@ package com.ipponusa
 
 import org.apache.spark.SparkConf
 import org.apache.spark.rdd.RDD
+import org.apache.spark.streaming.dstream.{DStream, InputDStream}
 import org.apache.spark.streaming.{Seconds, StreamingContext}
 
 import scala.collection.mutable
@@ -16,21 +17,25 @@ object MainStreaming {
 
   def main(args: Array[String]) {
 
-    val rddQueue = new mutable.Queue[RDD[Int]]()
+    val rddQueue = new mutable.Queue[RDD[Char]]()
 
-    ssc.queueStream(rddQueue, oneAtATime=false)
-      .filter(i => i % 2 ==0)
-      .map(i => i * i)
+    val input: InputDStream[Char] = ssc.queueStream(rddQueue, oneAtATime = false)
+    applyOperations(input)
       .print()
 
     ssc.start()
 
-    for (i <- 1 to 30) {
-      rddQueue += ssc.sparkContext.parallelize(List(i))
+    for (c <- 'a' to 'z') {
+      println("c = " + c)
+      rddQueue += ssc.sparkContext.parallelize(List(c))
       Thread.sleep(Seconds(1).milliseconds)
     }
 
     println("await termination")
     ssc.awaitTermination()
+  }
+
+  def applyOperations(input: InputDStream[Char]): DStream[Char] = {
+    input.map(_.toUpper)
   }
 }
