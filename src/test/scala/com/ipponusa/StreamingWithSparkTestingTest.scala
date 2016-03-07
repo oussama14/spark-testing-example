@@ -11,4 +11,11 @@ class StreamingWithSparkTestingTest extends StreamingSuiteBase {
     testOperation(input, StreamLogic.capitalize, expected, ordered = false)
   }
 
+  test("capitalize by window") {
+    val input = List(List('a'), List('b'), List('c'), List('d'), List('e'))
+    val expected = List(List('A','B'), List('B','C','D'))
+
+    testOperation(input, StreamLogic.capitalizeWindowed, expected, ordered = false)
+  }
+
 }
