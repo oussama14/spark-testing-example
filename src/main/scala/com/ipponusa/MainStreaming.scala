@@ -20,7 +20,7 @@ object MainStreaming {
     val rddQueue = new mutable.Queue[RDD[Char]]()
 
     val input: InputDStream[Char] = ssc.queueStream(rddQueue, oneAtATime = false)
-    StreamLogic.capitalize(input)
+    StreamOperations.capitalize(input)
       .print()
 
     ssc.start()

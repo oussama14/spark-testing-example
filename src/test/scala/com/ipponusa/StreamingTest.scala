@@ -51,7 +51,7 @@ class StreamingTest extends FlatSpec with Matchers with BeforeAndAfter with Even
     var outputCollector = ListBuffer.empty[Array[Char]]
 
     val inputStream = ssc.queueStream(inputData)
-    val outputStream = StreamLogic.capitalizeWindowed(inputStream)
+    val outputStream = StreamOperations.capitalizeWindowed(inputStream)
 
     outputStream.foreachRDD(rdd=> {outputCollector += rdd.collect()})
 
