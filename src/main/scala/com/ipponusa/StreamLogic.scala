@@ -5,8 +5,12 @@ import org.apache.spark.streaming.dstream.{DStream, InputDStream}
 
 object StreamLogic {
 
-  def applyOperations(input: InputDStream[Char]): DStream[Char] = {
+  def capitalize(input: DStream[Char]): DStream[Char] = {
     input.map(_.toUpper)
-      .window(windowDuration = Seconds(3), slideDuration = Seconds(2))
+  }
+
+  def capitalizeWindowed(input: DStream[Char]): DStream[Char] = {
+    input.map(_.toUpper)
+          .window(windowDuration = Seconds(3), slideDuration = Seconds(2))
   }
 }
