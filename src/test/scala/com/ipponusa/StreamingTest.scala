@@ -41,11 +41,6 @@ class StreamingTest extends FlatSpec with Matchers with BeforeAndAfter with Even
 
   behavior of "stream transformation"
 
-  def assertOutput(result: Iterable[Array[Char]], expected: List[Char]) =
-    eventually {
-      result.last.toSet should equal(expected.toSet)
-    }
-
   it should "apply transformation" in {
     val inputData: mutable.Queue[RDD[Char]] = mutable.Queue()
     var outputCollector = ListBuffer.empty[Array[Char]]
@@ -60,23 +55,29 @@ class StreamingTest extends FlatSpec with Matchers with BeforeAndAfter with Even
     inputData += sc.makeRDD(List('a'))
     wait1sec() // T = 1s
 
-    inputData += sc.parallelize(List('b'))
+    inputData += sc.makeRDD(List('b'))
     wait1sec() // T = 2s
 
     assertOutput(outputCollector, List('A','B'))
 
-    inputData += sc.parallelize(List('c'))
+    inputData += sc.makeRDD(List('c'))
     wait1sec() // T = 3s
 
-    inputData += sc.parallelize(List('d'))
+    inputData += sc.makeRDD(List('d'))
     wait1sec() // T = 4s
     assertOutput(outputCollector, List('B', 'C', 'D'))
 
-    // wait until next slide
+    // no more data ingestion
+    // and wait until next slide
     wait1sec() // T = 5s
     wait1sec() // T = 6s
     assertOutput(outputCollector, List('D'))
   }
+
+  def assertOutput(result: Iterable[Array[Char]], expected: List[Char]) =
+    eventually {
+      result.last.toSet should equal(expected.toSet)
+    }
 
   def wait1sec(): Unit = {
     fixedClock.addTime(Duration.apply(1000, TimeUnit.MILLISECONDS))
