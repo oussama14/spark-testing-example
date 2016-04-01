@@ -5,9 +5,7 @@ import java.util.concurrent.TimeUnit
 import org.apache.spark.rdd.RDD
 import org.apache.spark.streaming.{Clock, Seconds, StreamingContext}
 import org.apache.spark.{FixedClock, SparkConf, SparkContext}
-import org.junit.runner.RunWith
 import org.scalatest.concurrent.Eventually
-import org.scalatest.junit.JUnitRunner
 import org.scalatest.time.{Millis, Span}
 import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
@@ -15,7 +13,6 @@ import scala.collection.mutable
 import scala.collection.mutable.ListBuffer
 import scala.concurrent.duration.Duration
 
-@RunWith(classOf[JUnitRunner])
 class StreamingTest extends FlatSpec with Matchers with BeforeAndAfter with Eventually {
 
   var sc:SparkContext = _

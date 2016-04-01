@@ -2,11 +2,8 @@ package com.ipponusa
 
 import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}
-import org.junit.runner.RunWith
-import org.scalatest.junit.JUnitRunner
 import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
-@RunWith(classOf[JUnitRunner])
 class WordCounterTest extends FlatSpec with Matchers with BeforeAndAfter {
 
   var sc:SparkContext = _

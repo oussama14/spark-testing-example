@@ -2,14 +2,11 @@ package com.ipponusa
 
 import com.holdenkarau.spark.testing.{RDDComparisons, RDDGenerator, SharedSparkContext}
 import org.apache.spark.rdd.RDD
-import org.junit.runner.RunWith
 import org.scalacheck.Arbitrary
 import org.scalacheck.Prop._
-import org.scalatest.junit.JUnitRunner
 import org.scalatest.prop.Checkers
 import org.scalatest.{FlatSpec, Matchers}
 
-@RunWith(classOf[JUnitRunner])
 class WordCounterWithSparkTestingTest extends FlatSpec with Matchers with SharedSparkContext with Checkers {
 
   behavior of "Words counter"
