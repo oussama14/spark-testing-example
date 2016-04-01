@@ -1,7 +1,7 @@
 package org.apache.spark
 import java.util.Date
 
-import scala.concurrent.duration.Duration
+import org.apache.spark.streaming.Duration
 
 class FixedClock(var currentTime: Long) extends org.apache.spark.util.Clock {
 
@@ -13,7 +13,7 @@ class FixedClock(var currentTime: Long) extends org.apache.spark.util.Clock {
   }
 
   def addTime(duration: Duration): Unit = synchronized {
-    currentTime += duration.toMillis
+    currentTime += duration.milliseconds
     notifyAll()
   }
 

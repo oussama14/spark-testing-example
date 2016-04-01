@@ -1,7 +1,5 @@
 package com.ipponusa
 
-import java.util.concurrent.TimeUnit
-
 import org.apache.spark.rdd.RDD
 import org.apache.spark.streaming.{Clock, Seconds, StreamingContext}
 import org.apache.spark.{FixedClock, SparkConf, SparkContext}
@@ -11,7 +9,6 @@ import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 import scala.collection.mutable
 import scala.collection.mutable.ListBuffer
-import scala.concurrent.duration.Duration
 
 class StreamingTest extends FlatSpec with Matchers with BeforeAndAfter with Eventually {
 
@@ -77,6 +74,6 @@ class StreamingTest extends FlatSpec with Matchers with BeforeAndAfter with Even
     }
 
   def wait1sec(): Unit = {
-    fixedClock.addTime(Duration.apply(1000, TimeUnit.MILLISECONDS))
+    fixedClock.addTime(Seconds(1))
   }
 }
